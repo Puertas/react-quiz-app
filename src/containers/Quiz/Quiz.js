@@ -15,29 +15,57 @@ class Quiz extends Component {
   }
 
   renderQuestions() {
-    return Object.keys(this.state.questions).map(
-      question => (
-        <React.Fragment key={question}>
-          <Question
-            key={question}
-            text={this.state.questions[question].text}
-            validated={this.state.validated}
-            correctResponse={this.state.questions[question].correctResponse}
-            answer={this.state.questions[question].response}/>
-          {Object.keys(this.state.questions[question].choices).map(
-            choice =>
-              <Choice
-                key={choice}
-                id={choice}
-                text={this.state.questions[question].choices[choice]}
-                inline={this.state.choiceAlignment === 'horizontal'}
-                disabled={this.state.validated}
-                response={this.state.questions[question].response}
-                onAnswerQuestion={() => this.answerQuestionHandler(question, choice)} />
-          )}
-        </React.Fragment>
-      )
-    );
+    const questionKeys = Object.keys(this.state.questions);
+
+    return questionKeys.map((question, i) => {
+      let questions = null;
+
+      if (this.shouldRenderQuestion(questionKeys, i)) {
+        questions = (
+          <React.Fragment key={question}>
+            <Question
+              key={question}
+              text={this.state.questions[question].text}
+              validated={this.state.validated}
+              correctResponse={this.state.questions[question].correctResponse}
+              answer={this.state.questions[question].response}
+            />
+            {this.renderChoices(question, Object.keys(this.state.questions[question].choices))}
+          </React.Fragment>
+        );
+      }
+
+      return questions;
+    });
+  }
+
+  renderChoices = (question, choices) => {
+    return choices.map(choice => {
+      return (
+        <Choice
+          key={choice}
+          id={choice}
+          text={this.state.questions[question].choices[choice]}
+          inline={this.state.choiceAlignment === "horizontal"}
+          disabled={this.getChoiceDisabled(this.state.questions[question].response)}
+          response={this.state.questions[question].response}
+          onAnswerQuestion={() => this.answerQuestionHandler(question, choice) }
+        />
+      );
+    });
+  }
+
+  shouldRenderQuestion = (questionKeys, index) => {
+    return (
+      this.state.questionDisplay === "showAll" ||
+      index === 0 ||
+      (this.state.questionDisplay === "showNext" &&
+        this.state.questions[questionKeys[index - 1]].response)
+    )
+  }
+
+  getChoiceDisabled = (response) => {
+    return this.state.validated || (this.state.answeredDisplay === 'disabled' && response);
   }
 
   answerQuestionHandler(question, choice) {
