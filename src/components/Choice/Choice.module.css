@@ -18,7 +18,7 @@
 .Inline {
   display: inline-block;
   vertical-align: text-top;
-  max-width: 120px;
+  max-width: 160px;
 }
 
 .Radio input[type="radio"] {
