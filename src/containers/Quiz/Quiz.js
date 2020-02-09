@@ -30,6 +30,7 @@ class Quiz extends Component {
                 key={choice}
                 id={choice}
                 text={this.state.questions[question].choices[choice]}
+                inline={this.state.choiceAlignment === 'horizontal'}
                 disabled={this.state.validated}
                 response={this.state.questions[question].response}
                 onAnswerQuestion={() => this.answerQuestionHandler(question, choice)} />
