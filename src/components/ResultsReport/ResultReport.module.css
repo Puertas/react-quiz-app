@@ -1,0 +1,11 @@
+.ResultsReport {
+  text-align: center;
+}
+
+.Success {
+  color: var(--success);
+}
+
+.Fail {
+  color: var(--danger);
+}
