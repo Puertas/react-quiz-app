@@ -41,17 +41,24 @@ class Quiz extends Component {
 
   renderChoices = (question, choices) => {
     return choices.map(choice => {
-      return (
-        <Choice
-          key={choice}
-          id={choice}
-          text={this.state.questions[question].choices[choice]}
-          inline={this.state.choiceAlignment === "horizontal"}
-          disabled={this.getChoiceDisabled(this.state.questions[question].response)}
-          response={this.state.questions[question].response}
-          onAnswerQuestion={() => this.answerQuestionHandler(question, choice) }
-        />
-      );
+      let renderChoices = null;
+
+      if (this.shouldRenderChoice(question)) {
+        renderChoices = (
+          <Choice
+            key={choice}
+            id={choice}
+            text={this.state.questions[question].choices[choice]}
+            inline={this.state.choiceAlignment === "horizontal"}
+            disabled={this.getChoiceDisabled(this.state.questions[question].response)}
+            response={this.state.questions[question].response}
+            onAnswerQuestion={() => this.answerQuestionHandler(question, choice) }
+          />
+        );
+      }
+
+
+      return renderChoices;
     });
   }
 
@@ -62,6 +69,17 @@ class Quiz extends Component {
       (this.state.questionDisplay === "showNext" &&
         this.state.questions[questionKeys[index - 1]].response)
     )
+  }
+
+  shouldRenderChoice = (question) => {
+    return (
+      this.state.questionDisplay === "showAll" ||
+      (this.state.questionDisplay === "showNext" &&
+        this.state.answeredDisplay !== "hide") ||
+      (this.state.questionDisplay === "showNext" &&
+        this.state.answeredDisplay === "hide" &&
+        !this.state.questions[question].response)
+    );
   }
 
   getChoiceDisabled = (response) => {
