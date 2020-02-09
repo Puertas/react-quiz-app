@@ -1,6 +1,11 @@
 {
   "name": "avallain-quiz",
   "version": "0.1.0",
+  "homepage": "https://puertas.github.com/react-quiz-app",
+  "author": {
+    "name": "Jose Puertas",
+    "url": "https://github.com/Puertas"
+  },
   "private": true,
   "dependencies": {
     "@primer/octicons-react": "^9.4.0",
@@ -15,7 +20,9 @@
     "start": "react-scripts start --no-cache",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
