@@ -13,7 +13,7 @@ function App() {
           <Logo />
         </div>
         <h1>
-          Avallain Quiz
+          React Quiz
         </h1>
       </header>
       <Quiz />
