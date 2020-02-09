@@ -1,0 +1,22 @@
+.App {
+  background-color: var(--light);
+  color: var(--primary);
+  height: 100vh;
+}
+
+.Header {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  background-color: var(--tertiary);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.07);
+}
+
+.Header  h1{
+  margin: 0 10px;
+}
+
+.Logo {
+  height: 40px;
+}
