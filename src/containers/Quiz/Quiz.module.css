@@ -1,0 +1,17 @@
+.Quiz {
+  width: 100%;
+  max-width: 720px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Subtitle {
+  color: var(--grey);
+}
+
+.ButtonsContainer {
+  text-align: right;
+  margin-top: 50px;
+}
