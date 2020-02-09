@@ -8,7 +8,7 @@ To run the project as usual:
 + `npm install` To install dependencies.
 + `npm start` To run the project.
 
-## Live [Demo](https://puertas.github.com/react-quiz-app)
+## Live [Demo](https://puertas.github.io/react-quiz-app/)
 
 
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
